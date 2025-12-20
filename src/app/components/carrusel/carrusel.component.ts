@@ -25,7 +25,11 @@ export class CarruselComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.backgroundDinamico();
+    
+  }
 
+  backgroundDinamico(){
     /* Con esto se va a generar un background dinamica en base a las imagenes */
     if (!isPlatformBrowser(this.platformId)) return; // evita errores en SSR
 
@@ -66,4 +70,6 @@ export class CarruselComponent implements OnInit, AfterViewInit {
   cerrarModal() {
     this.modalService.dismissAll();
   }
+
+
 }
