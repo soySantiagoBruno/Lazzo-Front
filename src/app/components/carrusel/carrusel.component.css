@@ -96,3 +96,34 @@ h3{
     padding: 8px 16px;
 
 }
+
+
+swiper-container {
+      width: 100%;
+      height: 60vh;
+      padding-bottom: 50px;
+}
+
+swiper-slide {
+    background-position: center;
+    background-size: cover;
+    
+    height: 100%;
+}
+
+swiper-slide img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 3 / 4;
+}
+
+.botones{
+    text-align: center;
+}
+
+.botones img{
+    width: 8rem;
+    background: black;
+    padding: 15px;
+}

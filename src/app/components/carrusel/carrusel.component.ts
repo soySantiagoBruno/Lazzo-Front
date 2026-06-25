@@ -1,9 +1,12 @@
-import { Component, Inject, OnInit, AfterViewInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, AfterViewInit, PLATFORM_ID, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { isPlatformBrowser, NgFor } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CartaComponent } from './carta/carta.component';
 import { Pet, PETS } from '../../mocks/pets.mock';
 import ColorThief from 'colorthief';
+import { register } from 'swiper/element/bundle';
+import { Swiper } from 'swiper/types'; register();
+
 
 @Component({
   selector: 'app-carrusel',
@@ -11,6 +14,8 @@ import ColorThief from 'colorthief';
   templateUrl: './carrusel.component.html',
   styleUrl: './carrusel.component.css',
   imports: [NgFor],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  
 })
 export class CarruselComponent implements OnInit, AfterViewInit {
   pets: Pet[] = [];
@@ -28,6 +33,11 @@ export class CarruselComponent implements OnInit, AfterViewInit {
     this.backgroundDinamico();
     
   }
+
+  spaceBetween = 10;
+
+
+
 
   backgroundDinamico(){
     /* Con esto se va a generar un background dinamica en base a las imagenes */

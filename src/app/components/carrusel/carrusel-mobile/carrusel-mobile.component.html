@@ -1,1 +1,11 @@
-<p>carrusel-mobile works!</p>
+<swiper-container
+  slides-per-view="1"
+  space-between="16"
+  pagination="true"
+  grab-cursor="true"
+  class="mascotas-swiper"
+>
+  <swiper-slide *ngFor="let mascota of mascotas">
+    <app-mascota-card [mascota]="mascota"></app-mascota-card>
+  </swiper-slide>
+</swiper-container>

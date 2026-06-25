@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 import { Pet } from '../../../mocks/pets.mock';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -7,7 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   standalone: true,
   imports: [],
   templateUrl: './carta.component.html',
-  styleUrl: './carta.component.css'
+  styleUrl: './carta.component.css',
 })
 export class CartaComponent {
   @Input() pet: any;
