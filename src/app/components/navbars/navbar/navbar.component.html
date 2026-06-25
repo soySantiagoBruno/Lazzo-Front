@@ -1,16 +1,30 @@
-<div class="navbar container-sm">
-
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg">
+    <div class="container-sm">
 
         <a class="navbar-brand" routerLink="">
             <img src="assets/logo.png" alt="Logo" height="63">
         </a>
 
-        <div class="navbar-nav">
-            <a class="button nav-link active btn btn-ingreso px-4 py-3" aria-current="page" routerLink="/login">Publicar Mascota</a>
+        <!--Botón hamburguesa-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-right">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/adoptar">Adoptar mascotas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/quienes-somos">Quienes somos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/mis-mascotas">Ver mis mascotas publicadas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="button nav-link active btn btn-ingreso px-4 py-3" aria-current="page" routerLink="/login">Iniciar sesión</a>
+                </li>
+            </ul>
         </div>
-
     </div>
-
-
-</div>
+</nav>

@@ -12,10 +12,15 @@ import { MyGuard } from './guards/my-guard';
 import { LoginGuard } from './guards/login-guard';
 import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
 import { EditarPasswordComponent } from './components/editar-password/editar-password.component';
+import { CarruselComponent } from './components/carrusel/carrusel.component';
+
 
 
 
 export const routes: Routes = [
+
+    // Secciones PLAYGROUND (eliminarlas luego)
+    {path: 'carrusel', component: CarruselComponent},
     
     // Secciones públicas
     {path: 'home', component: HomeComponent},

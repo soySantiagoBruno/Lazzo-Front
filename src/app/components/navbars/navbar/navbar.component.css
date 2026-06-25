@@ -1,3 +1,11 @@
+.navbar-toggler{
+    filter: invert(1);
+}
+
+#navbarNav{
+    background-color: red;
+}
+
 .container-sm{
     border-radius: 48px;
     background: var(--Black, #222);
