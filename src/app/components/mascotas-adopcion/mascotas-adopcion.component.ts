@@ -10,4 +10,5 @@ import { NavbarUsuarioComponent } from "../navbars/navbar-usuario/navbar-usuario
 })
 export class MascotasAdopcionComponent {
 
+    
 }
