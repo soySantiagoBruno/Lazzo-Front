@@ -19,9 +19,6 @@ import { CarruselComponent } from './components/carrusel/carrusel.component';
 
 export const routes: Routes = [
 
-    // Secciones PLAYGROUND (eliminarlas luego)
-    {path: 'carrusel', component: CarruselComponent},
-    
     // Secciones públicas
     {path: 'home', component: HomeComponent},
     {path: 'saber-mas', component: SaberMasComponent},
