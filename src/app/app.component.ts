@@ -7,13 +7,14 @@ import { InfoMascotaComponent } from "./components/info-mascota/info-mascota.com
 
 import { LoginComponent } from './components/login/login.component';
 import { SaberMasComponent } from './components/saber-mas/saber-mas.component';
+import { MascotasAdopcionComponent } from "./components/mascotas-adopcion/mascotas-adopcion.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet]
+    imports: [RouterOutlet, MascotasAdopcionComponent]
 })
 export class AppComponent {
   title = 'frontend-adoptapp';

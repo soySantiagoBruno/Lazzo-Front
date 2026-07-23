@@ -2,4 +2,28 @@
 <app-navbar-usuario></app-navbar-usuario>
 -->
 
-<h1>Mascotas adopcion work</h1>
+<h1>Mis mascotas publicadas en adopción</h1>
+
+<div class="container text-center">
+  <div class="row">
+    
+    @for (mascota of mascotas; track mascota.id) {
+
+      <div class="col-6 col-md-4">
+      
+        <div class="card" style="width: 18rem;">
+          <img [src]="mascota.image" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{mascota.name}}</h5>
+            <a href="#" class="btn btn-primary">Editar</a>
+            <a href="#" class="btn btn-danger">Borrar</a>
+          </div>
+        </div>
+      
+      </div>
+
+    }
+
+
+  </div>
+</div>

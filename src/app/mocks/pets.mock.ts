@@ -59,7 +59,7 @@ export const PETS: Pet[] = [
   {
     id: 'p5',
     name: 'Thor',
-    image: 'assets/perro.png',
+    image: 'assets/enadopcion2.jpg',
     location: 'Mendoza-AR',
     size: 'Mediano',
     age: '4 años',
@@ -70,7 +70,7 @@ export const PETS: Pet[] = [
   {
     id: 'p6',
     name: 'Nala',
-    image: 'assets/perro.png',
+    image: 'assets/adoptado1.jpeg',
     location: 'Salta-AR',
     size: 'Pequeño',
     age: '3 años',
