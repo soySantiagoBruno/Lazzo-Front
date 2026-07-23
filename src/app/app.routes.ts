@@ -4,7 +4,6 @@ import { HomeComponent } from './components/home/home.component';
 import { SaberMasComponent } from './components/saber-mas/saber-mas.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PublicarMascotaComponent } from './components/publicar-mascota/publicar-mascota.component';
-import { HomeUsuarioComponent } from './components/home-usuario/home-usuario.component';
 import { RegistrarUsuarioComponent } from './components/registrar-usuario/registrar-usuario.component';
 import {canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { RegistrarUsuarioGoogleComponent } from './components/registrar-usuario-google/registrar-usuario-google.component';
@@ -13,6 +12,7 @@ import { LoginGuard } from './guards/login-guard';
 import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
 import { EditarPasswordComponent } from './components/editar-password/editar-password.component';
 import { CarruselComponent } from './components/carrusel/carrusel.component';
+import { MascotasAdopcionComponent } from './components/mascotas-adopcion/mascotas-adopcion.component';
 
 
 
@@ -33,10 +33,10 @@ export const routes: Routes = [
     {path: 'registrar-usuario-google', component: RegistrarUsuarioGoogleComponent},
     
     // Secciones protegidas
-    {path: 'home-usuario', 
-        component: HomeUsuarioComponent,
+    {path: 'mascotas-adopcion', 
+        component: MascotasAdopcionComponent,
         canActivate:[MyGuard],
-    }, //home para adoptar (necesitas estar logueado)
+    }, //sección para dar en adopción (necesitas estar logueado)
     {
         path: 'publicar-mascota',
         component: PublicarMascotaComponent,
