@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { MascotaRegisterDto } from '../models/pet-dto';
 import { arrayUnion, Firestore } from '@angular/fire/firestore';
 import { Auth, user } from '@angular/fire/auth';
@@ -37,6 +37,7 @@ export class MascotaService {
       edad: nuevaMascota.edad,
       provincia: nuevaMascota.provincia,
       departamento: nuevaMascota.departamento,
+      descripcion: nuevaMascota.descripcion,
       urlImagen: nuevaMascota.urlImagen,
       uidAdoptante: this.auth.currentUser?.uid
     });
@@ -53,6 +54,46 @@ export class MascotaService {
       mascotasEnAdopcion: arrayUnion(docRef.id) //ID del documento mascota que acabo de agregar
     });
 
+  }
+
+  async obtenerMascota(id: string): Promise<MascotaRegisterDto | null> {
+    const mascotaSnapshot = await getDoc(doc(this.firestore, 'mascotas', id));
+
+    if (!mascotaSnapshot.exists()) {
+      return null;
+    }
+
+    return {
+      uid: mascotaSnapshot.id,
+      ...mascotaSnapshot.data()
+    } as MascotaRegisterDto;
+  }
+
+  async obtenerMascotas(): Promise<MascotaRegisterDto[]> {
+    const uidUsuarioActual = this.auth.currentUser?.uid;
+
+    console.log('UID del usuario actual:', uidUsuarioActual);
+
+    if (!uidUsuarioActual) {
+      console.error('No se pudo obtener el UID del usuario actual.');
+      return [];
+    }
+
+    const mascotasQuery = query(
+      collection(this.firestore, 'mascotas'),
+      where('uidAdoptante', '==', uidUsuarioActual)
+    );
+    const mascotasSnapshot = await getDocs(mascotasQuery);
+
+    return mascotasSnapshot.docs.map((mascotaSnapshot) => ({
+      uid: mascotaSnapshot.id,
+      ...mascotaSnapshot.data()
+    } as MascotaRegisterDto));
+  }
+
+  async actualizarMascota(id: string, cambios: Partial<MascotaRegisterDto>): Promise<void> {
+    const { uid, uidAdoptante, ...datosActualizables } = cambios;
+    await updateDoc(doc(this.firestore, 'mascotas', id), datosActualizables);
   }
 
 }

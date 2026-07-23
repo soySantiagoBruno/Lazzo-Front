@@ -16,7 +16,7 @@ export class PublicarMascotaFormService {
       provincia: new FormControl('', [Validators.required]),
       departamento: new FormControl('', [Validators.required]), // <-- rename departamento -> departamento
       descripcion: new FormControl('', [Validators.required]),
-      urlImagen: new FormControl('', [Validators.required]),
+      urlImagen: new FormControl(''),
       uidAdoptante: new FormControl('', [Validators.required]),      
     });
   }

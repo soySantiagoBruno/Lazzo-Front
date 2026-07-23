@@ -1,0 +1,170 @@
+<app-navbar-usuario></app-navbar-usuario>
+
+<div class="contenedor-principal">
+
+    <!--Inicio-->
+    <div class="container bg-light-subtle">
+        <h4 class="mb-5">Aquí podrás publicar las mascotas que quieras dar en adopción</h4>
+    </div>
+    
+    <!--Formulario-->
+    <h3>Datos de la mascota</h3>
+    <h4 style="font-weight: bolder;text-align: left;" class="mb-3 font-weight-bold">¿Qué deseas publicar?</h4>
+
+
+    <div class="filtro col-md-7">
+        <form [formGroup]="publicarMascotaForm" (ngSubmit)="actualizarMascota()">
+            <!--Tipo-->
+            <div class="mb-3">
+                <label for="tipo" class="form-label">Tipo</label>
+                <div class="d-flex gap-4">
+                    <div class="form-check">
+                        <input formControlName="tipo" value="perro"
+                        class="form-check-input" type="radio" name="tipo" id="tipo">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                        Perro
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input formControlName="tipo" value="gato"
+                         class="form-check-input" type="radio" name="tipo" id="tipo">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                        Gato
+                        </label>
+                    </div>
+                </div>
+        
+            </div>
+
+            <!--Nombre-->
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input formControlName="nombre"
+                type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre de la mascota">
+            </div>
+            
+            <!--Sexo-->
+            <div class="mb-3">
+                <label for="sexo" class="form-label">Sexo</label>
+                <div class="d-flex gap-4">
+                    <div class="form-check">
+                        <input formControlName="sexo" value="macho"
+                         class="form-check-input" type="radio" name="sexo" id="sexo">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Macho <i class="bi bi-gender-male"></i>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input formControlName="sexo" value="hembra"
+                         class="form-check-input" type="radio" name="sexo" id="sexo">
+                        <label class="form-check-label" for="sexo">
+                            Hembra <i class="bi bi-gender-female"></i>
+                        </label>
+                    </div>
+                </div>
+        
+            </div>
+        
+            <!--Tamaño-->
+            <div class="mb-3">
+                <label class="form-label">Tamaño</label>
+        
+                <select formControlName="tamanio"
+                 class="form-select form-select-lg mb-3" aria-label="Large select example">
+                    <option value="" disabled>Seleccione un tamaño</option>
+                    <option value="Chico">Chico</option>
+                    <option value="Mediano">Mediano</option>
+                    <option value="Grande">Grande</option>
+                </select>
+            </div>
+        
+            <!--Edad-->
+            <div class="mb-3">
+                <label class="form-label">Edad</label>
+        
+                <select formControlName="edad"
+                 class="form-select form-select-lg mb-3">
+                    <option value="" disabled>Seleccione una edad</option>
+                    <option value="Cachorros">Cachorros</option>
+                    <option value="Jovenes (2-4 años)">Jovenes (2-4 años)</option>
+                    <option value="Adultos (5-9 años)">Adultos (5-9 años)</option>
+                    <option value="Viejitos (+10 años)">Viejitos (+10 años)</option>
+                </select>
+        
+            </div>
+
+                    
+            <!--Ubicación-->
+            <div class="mb-3">
+              
+                <!--Provincia-->
+                <select formControlName="provincia" class="dropdown-toggle input-whatsapp w-100">
+                    <option class="dropdown-item" value="" disabled>Provincia</option>
+                    <option class="dropdown-item" *ngFor="let provincia of provincias" [value]="provincia.id">{{provincia.nombre}}</option>
+                </select>
+ 
+            </div>
+            
+            <div class="mb-3" *ngIf="tocado">
+                <!--departamento-->
+                <select 
+                formControlName="departamento" 
+                class="dropdown-toggle ms-1 input-whatsapp w-100"
+                >
+                    <option class="dropdown-item" value="" disabled>departamento</option>
+    
+                    <option class="dropdown-item" *ngFor="let departamento of departamentos" [value]="departamento.id">{{departamento.nombre}}</option>
+                </select>
+            </div>
+            
+            
+            <!--Descripción-->
+            <textarea formControlName="descripcion"
+             class="form-control mb-3" id="exampleFormControlTextarea1" rows="3" placeholder="Ingrese una breve descripción..." style="border-radius: 16px !important;"></textarea>
+            
+            <!--Subir foto-->
+            <input type="hidden" formControlName="urlImagen">
+
+            <div class="mb-3" *ngIf="imagenPreview">
+                <label class="form-label">Imagen actual</label>
+                <img
+                    [src]="imagenPreview"
+                    alt="Imagen actual de la mascota"
+                    class="img-fluid rounded-4 mb-2"
+                    style="max-height: 220px; object-fit: cover; border: 1px solid #ddd;">
+            </div>
+
+            <input
+              type="file"
+              class="file-upload-input mb-3"
+              data-mdb-file-upload-init=""
+              accept="image/*"
+              autocomplete="off"
+              (change)="onArchivoSeleccionado($event)">
+
+            <!--Politicas-->
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="politicas">
+                <label class="form-check-label" for="politicas">
+                  <p class="politicas">Conozco y acepto las <a href="">políticas y buenas practicas de adopción de Lazzo.</a></p>
+                </label>
+            </div>
+
+            <!--Botones-->
+            <div class="mb-3">
+                <button type="submit" class="btn iniciar-sesion" [disabled]="cargando || guardando">
+                    {{ guardando ? 'Guardando...' : 'Guardar cambios' }}
+                </button>
+            </div>
+            
+            <div class="boton-filtro d-flex">
+                <i class="bi bi-arrow-left-circle"></i>
+                <button type="button" class="boton-filtro p-3" routerLink="/mascotas-adopcion">Volver</button>
+            </div>
+        </form>
+        </div>
+
+
+</div>
+
+<app-footer-dark/>

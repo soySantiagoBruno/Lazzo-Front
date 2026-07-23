@@ -8,9 +8,10 @@ export interface UsuarioRegisterDto {
     // Datos de contacto
     celular?: Number;
     email: string;
+    tieneWhatsapp: boolean;
+
     provincia: string;
     departamento: string;
-    tieneWhatsapp: boolean;
 
     password: string;
     

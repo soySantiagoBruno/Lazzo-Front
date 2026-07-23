@@ -3,7 +3,6 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signO
 import { addDoc, collection, doc, Firestore, getDocs, query, updateDoc, where } from '@angular/fire/firestore';
 import { UsuarioRegisterDto } from '../models/usuario-register-dto';
 import { Router, RouterLink } from '@angular/router';
-import { UsuarioRegisterGoogleDto } from '../models/usuario-register-google-dto';
 import { UsuarioLogin } from '../models/usuario-login';
 import { log } from 'console';
 import { sendEmailVerification, updatePassword } from 'firebase/auth';

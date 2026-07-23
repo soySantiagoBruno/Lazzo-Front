@@ -13,6 +13,7 @@ import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.
 import { EditarPasswordComponent } from './components/editar-password/editar-password.component';
 import { CarruselComponent } from './components/carrusel/carrusel.component';
 import { MascotasAdopcionComponent } from './components/mascotas-adopcion/mascotas-adopcion.component';
+import { PublicarMascotaComponent as ModificarMascotaComponent } from './components/mascotas-adopcion/modificar-mascota/modificar-mascota.component';
 
 
 
@@ -40,6 +41,11 @@ export const routes: Routes = [
     {
         path: 'publicar-mascota',
         component: PublicarMascotaComponent,
+        canActivate:[MyGuard],
+    },
+    {
+        path: 'modificar-mascota/:id',
+        component: ModificarMascotaComponent,
         canActivate:[MyGuard],
     },
 
