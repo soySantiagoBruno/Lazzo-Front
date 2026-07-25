@@ -13,15 +13,12 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto align-items-right">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/adoptar">Adoptar mascotas</a>
+                    <a class="nav-link" [routerLink]="['/home']" fragment="about">¿Quiénes somos?</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/quienes-somos">Quienes somos</a>
+                <li *ngIf="isAuthenticated" class="nav-item">
+                    <a class="nav-link" routerLink="/mascotas-adopcion">Ver mis mascotas publicadas</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/mis-mascotas">Ver mis mascotas publicadas</a>
-                </li>
-                <li class="nav-item">
+                <li *ngIf="!isAuthenticated" class="nav-item">
                     <a class="button nav-link active btn btn-ingreso px-4 py-3" aria-current="page" routerLink="/login">Iniciar sesión</a>
                 </li>
             </ul>
