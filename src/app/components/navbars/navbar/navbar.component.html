@@ -6,22 +6,27 @@
         </a>
 
         <!--Botón hamburguesa-->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#modalNavbar" aria-controls="modalNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto align-items-right">
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/home']" fragment="about">¿Quiénes somos?</a>
-                </li>
-                <li *ngIf="isAuthenticated" class="nav-item">
-                    <a class="nav-link" routerLink="/mascotas-adopcion">Ver mis mascotas publicadas</a>
-                </li>
-                <li *ngIf="!isAuthenticated" class="nav-item">
-                    <a class="button nav-link active btn btn-ingreso px-4 py-3" aria-current="page" routerLink="/login">Iniciar sesión</a>
-                </li>
-            </ul>
-        </div>
     </div>
 </nav>
+
+
+
+
+
+<!-- Modal -->
+<div #modalNavbar class="modal fade" id="modalNavbar" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xs">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="d-flex flex-column justify-content-center gap-3 p-4 text-center">
+            <a *ngIf="!isAuthenticated" class="btn boton w-100" (click)="goToLogin()">Iniciar sesión</a>
+            <a class="btn boton w-100" (click)="goToSection('about')">¿Quiénes somos?</a>
+            <a class="btn boton w-100" routerLink="/publicar-mascota" data-bs-dismiss="modal">Dar en adopción</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

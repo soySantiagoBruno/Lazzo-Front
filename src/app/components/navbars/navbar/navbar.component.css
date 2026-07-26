@@ -6,6 +6,17 @@
     background-color: red;
 }
 
+.boton {
+    border-radius: 48px !important;
+  
+    /* shadow buttons */
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+      -12px 28px 8px 0px rgba(0, 0, 0, 0), -8px 18px 8px 0px rgba(0, 0, 0, 0.03),
+      -4px 10px 7px 0px rgba(0, 0, 0, 0.1), -2px 4px 5px 0px rgba(0, 0, 0, 0.17);
+    background: #e5a700 !important;
+    padding: 8px 16px;
+  }
+
 .container-sm{
     border-radius: 48px;
     background: var(--Black, #222);

@@ -25,7 +25,6 @@ export class NavbarUsuarioComponent implements OnInit{
   constructor(
     private userService: UserService, 
     private router: Router,
-    private auth: Auth, 
     private firestore: Firestore
     
   ){
