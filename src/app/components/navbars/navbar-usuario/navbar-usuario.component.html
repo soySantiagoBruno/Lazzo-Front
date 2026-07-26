@@ -6,7 +6,7 @@
             <img src="assets/isotipo.png" alt="Logo" height="63">
         </a>
 
-        <span class="ubicacion" ><img src="assets/location-empty.svg" alt=""> {{usuarioActual.departamento}}, {{usuarioActual.provincia}}</span>
+        <span class="text-white text-center">{{usuarioActual.nombreCompleto}}</span>
 
         <a type="button" class="navbar-brand" data-bs-toggle="modal" data-bs-target="#modalUsuario">
             <img [src]="usuarioActual.urlImagenPerfil==null ? 'assets/perfil.png' : usuarioActual.urlImagenPerfil" alt="Imagen perfil" height="63" class="rounded-circle">

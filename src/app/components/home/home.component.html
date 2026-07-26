@@ -1,4 +1,8 @@
-<app-navbar/>
+@if(!estaAutenticado){
+    <app-navbar/>
+} @else{
+    <app-navbar-usuario/>
+}
 
 <h1 class="container">En <span style="color:#4B88A2">Lazzo</span> un amigo espera</h1>  
 
