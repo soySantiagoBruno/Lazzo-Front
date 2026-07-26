@@ -55,6 +55,10 @@ export class UserService {
       
       // Una vez logueados con Google, SI NO estamos registrados en la colección "usuarios" nos vamos al registro-usuario-google
       const uidUserActual = this.auth.currentUser?.uid;
+      if (!uidUserActual) {
+        console.error('loginWithGoogle: no se obtuvo el uid del usuario autenticado');
+        return;
+      }
       
       // Realizar la consulta en Firestore
       const q = query(collection(this.firestore, 'usuarios'), where("uid", "==", uidUserActual));
@@ -63,7 +67,7 @@ export class UserService {
       // Verificar si el documento existe en Firestore
       if (!querySnapshot.empty) {
           console.log("El usuario existe en la colección 'usuarios'");
-          this.router.navigate(['/home-usuario']);
+          this.router.navigate(['/mascotas-adopcion']);
           
       } else {
           console.log("El usuario no está registrado en la colección 'usuarios'");
@@ -172,7 +176,12 @@ export class UserService {
   // Me traigo un usuario a partir del UID
   async getUsuario(): Promise<UsuarioRegisterDto | null>{
     
-    let uidUserActual = this.auth.currentUser?.uid;
+    const uidUserActual = this.auth.currentUser?.uid;
+    if (!uidUserActual) {
+      console.warn('getUsuario: no hay usuario autenticado, no se realiza la consulta Firestore');
+      return null;
+    }
+
     const userRef = collection(this.firestore, "usuarios");
 
     const usuarioTraido: UsuarioRegisterDto = {
@@ -186,7 +195,7 @@ export class UserService {
       urlImagenPerfil:''
     };
 
-    // Realizar la consulta en Firestore
+    // Realizar la consulta Firestore
     const q = query(userRef, where("uid", "==", uidUserActual));
     const querySnapshot = await getDocs(q);
 

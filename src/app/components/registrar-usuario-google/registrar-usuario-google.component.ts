@@ -56,8 +56,8 @@ export class RegistrarUsuarioGoogleComponent {
     
     this.userService.registerUsuarioGoogle(this.formularioRegisterGoogle.value) // Le pasamos los VALORES del formulario necesarios para el registro
     .then(response => {      
-      // En caso de que el registro sea exitoso, redirije al /home-usuario
-      this.router.navigate(["/home-usuario"])
+      // En caso de que el registro sea exitoso, redirije al /mascotas-adopcion
+      this.router.navigate(["/mascotas-adopcion"])
     })
 
     .catch(error => console.log(error))

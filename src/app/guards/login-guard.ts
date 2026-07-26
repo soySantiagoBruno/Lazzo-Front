@@ -22,21 +22,33 @@ export const LoginGuard = () => {
       const uidUserActual = user.uid;
       console.log("uiduseractual: ", uidUserActual);
 
-      // Realizar la consulta en Firestore
-      const q = query(collection(firestore, 'usuarios'), where("uid", "==", uidUserActual));
-      const querySnapshot = await getDocs(q);
+      if (!uidUserActual) {
+        console.error('LoginGuard: UID inválido');
+        unsubscribe();
+        return resolve(true);
+      }
 
-      // Si el usuario está registrado en 'usuarios', redirigir a home-usuario
-      if (!querySnapshot.empty) {
-        console.log("El usuario ya está registrado en Firestore");
-        router.navigate(['/home-usuario']);
-        unsubscribe(); // Desuscribir para evitar múltiples llamadas
-        return resolve(false); // No permitir acceso a la ruta de login
-      } else {
-        // El usuario no está registrado, permitir acceso al login
-        console.log("El usuario no está registrado en la colección 'usuarios'");
-        unsubscribe(); // Desuscribir para evitar múltiples llamadas
-        return resolve(true); // Permitir acceso a la ruta de login
+      try {
+        // Realizar la consulta en Firestore
+        const q = query(collection(firestore, 'usuarios'), where("uid", "==", uidUserActual));
+        const querySnapshot = await getDocs(q);
+
+        // Si el usuario está registrado en 'usuarios', redirigir a mascotas-adopcion
+        if (!querySnapshot.empty) {
+          console.log("El usuario ya está registrado en Firestore");
+          router.navigate(['/mascotas-adopcion']);
+          unsubscribe(); // Desuscribir para evitar múltiples llamadas
+          return resolve(false); // No permitir acceso a la ruta de login
+        } else {
+          // El usuario no está registrado, permitir acceso al login
+          console.log("El usuario no está registrado en la colección 'usuarios'");
+          unsubscribe(); // Desuscribir para evitar múltiples llamadas
+          return resolve(true); // Permitir acceso a la ruta de login
+        }
+      } catch (error) {
+        console.error('LoginGuard: error al consultar Firestore', error);
+        unsubscribe();
+        return resolve(true);
       }
     });
   });

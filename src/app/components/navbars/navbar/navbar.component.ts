@@ -20,9 +20,13 @@ export class NavbarComponent {
 
   async ngOnInit(): Promise<void> {
 
+    console.log("NavbarComponent ngOnInit called");    
+    console.log(await this.userService.getUsuario());
+
     // controla si se van a mostrar en el DOM los li "login" y "ver mis mascotas publicadas" dependiendo si el usuario está logueado o no.
     if (await this.userService.getUsuario()){
       this.isAuthenticated = true;
+      console.log("Usuario logueado, mostrando 'ver mis mascotas publicadas'");
     }
   }
   

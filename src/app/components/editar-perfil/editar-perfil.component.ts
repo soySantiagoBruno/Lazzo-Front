@@ -75,7 +75,7 @@ export class EditarPerfilComponent implements OnInit{
       this.userService.actualizarUsuario(this.formularioEditarUsuario.value) // Le pasamos los VALORES del formulario necesarios para el registro
       .then(response => {
         // En caso de que el registro sea exitoso, redirije al login      
-        this.router.navigate(["/home-usuario"])
+        this.router.navigate(["/mascotas-adopcion"])
         console.log("actualizado con exito");
         
       })

@@ -27,7 +27,7 @@ export const routes: Routes = [
     // Secciones de logueo y registro
     {path: 'login', 
         component: LoginComponent,
-        // Si ya estas logueado, mandalo al home-usuario
+        // Si ya estas logueado, mandalo al mascotas-adopcion
         canActivate: [LoginGuard],
     },
     {path: 'registrar-usuario', component: RegistrarUsuarioComponent},

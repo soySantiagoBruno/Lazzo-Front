@@ -30,22 +30,33 @@ export const MyGuard: CanActivateFn = async () => {
 
             // Obtener el uid del usuario actual
             const uidUserActual = user.uid;
-
-            // Realizar la consulta en Firestore
-            const q = query(collection(firestore, 'usuarios'), where("uid", "==", uidUserActual));
-            const querySnapshot = await getDocs(q);
-
-            // Verificar si el documento existe en Firestore
-            if (!querySnapshot.empty) {
-                console.log("El usuario existe en la colección 'usuarios'");
-                return resolve(true); // Permitir el acceso
-            } else {
-                console.log("El usuario no está registrado en la colección 'usuarios'");
+            if (!uidUserActual) {
+                console.error('MyGuard: UID inválido');
                 router.navigate(['/login']);
                 return resolve(false);
+            }
+
+            try {
+              // Realizar la consulta en Firestore
+              const q = query(collection(firestore, 'usuarios'), where("uid", "==", uidUserActual));
+              const querySnapshot = await getDocs(q);
+
+              // Verificar si el documento existe en Firestore
+              if (!querySnapshot.empty) {
+                  console.log("El usuario existe en la colección 'usuarios'");
+                  return resolve(true); // Permitir el acceso
+              } else {
+                  console.log("El usuario no está registrado en la colección 'usuarios'");
+                  router.navigate(['/login']);
+                  return resolve(false);
+              }
+            } catch (error) {
+              console.error('MyGuard: error al consultar Firestore', error);
+              router.navigate(['/login']);
+              return resolve(false);
             }
         });
     });
 
-    // Se podría implementar una pantalla de carga para evitar el parpadero que muestra el login al recargar la paginad e home-usuario por ejemplo.
+    // Se podría implementar una pantalla de carga para evitar el parpadero que muestra el login al recargar la paginad e mascotas-adopcion por ejemplo.
 };

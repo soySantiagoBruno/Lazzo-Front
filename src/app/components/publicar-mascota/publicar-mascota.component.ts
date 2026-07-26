@@ -47,7 +47,7 @@ export class PublicarMascotaComponent implements OnInit{
     this.mascotaService.registrarMascota(this.publicarMascotaForm.value)
     .then(response=>{
       console.log("Registro exitoso")
-      this.router.navigate(["/home-usuario"]) 
+      this.router.navigate(["/mascotas-adopcion"]) 
     })
     
   }

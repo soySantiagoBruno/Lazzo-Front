@@ -28,8 +28,8 @@ export class LoginComponent {
   onSubmit(){
     this.userService.login(this.formularioLogin.value) // Le pasamos los VALORES del formulario necesarios para el registro
     .then(response => {
-      // En caso de que el registro sea exitoso, redirije al login      
-      this.router.navigate(["/home-usuario"])
+      // En caso de que el registro sea exitoso, redirije a       
+      this.router.navigate(["/mascotas-adopcion"])
     
     })
     .catch(error => console.log(error))
@@ -39,7 +39,7 @@ export class LoginComponent {
     this.userService.loginWithGoogle()
     .then(response => {
       // En caso de que el registro sea exitoso, redirije al login      
-      //this.router.navigate(["/home-usuario"])
+      //this.router.navigate(["/mascotas-adopcion"])
     })
       
   }

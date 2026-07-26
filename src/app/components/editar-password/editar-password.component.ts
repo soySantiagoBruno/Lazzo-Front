@@ -29,7 +29,7 @@ export class EditarPasswordComponent {
   actualizarPassword(){
     this.userService.actualizarPassword(this.formularioEditarPassword)
     .then(response => {
-      this.router.navigate(["/home-usuario"])
+      this.router.navigate(["/mascotas-adopcion"])
     }
     );
 
